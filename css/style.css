@@ -24,12 +24,6 @@ html {
   }
 }
 
-@media only screen and (min-width: 112.5em) {
-  html {
-    font-size: 75%;
-  }
-}
-
 body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -199,7 +193,7 @@ body {
 :is(.card__content--left, .card__content--right) {
   width: 50%;
   display: table-cell;
-  vertical-align: middle;
+  vertical-align: top;
   position: relative;
 }
 
@@ -480,7 +474,7 @@ body {
   width: 2.5rem;
   height: 2.5rem;
   right: -1.3rem;
-  background-image: url(../img/one-ring.png);
+  background-image: url(https://raw.githubusercontent.com/sm1234sm/fcc-tribute-page/master/img/one-ring.webp);
   background-size: 2.5rem;
   top: 1.8rem;
   border-radius: 50%;
@@ -672,33 +666,13 @@ body {
   width: calc((100% - 8rem) / 2);
 }
 
-.row .col-1-of-3 {
-  width: calc((100% - 2 * 8rem) / 3);
-}
-
-.row .col-2-of-3 {
-  width: calc(2 * ((100% - 2 * 8rem) / 3) + 8rem);
-}
-
-.row .col-1-of-4 {
-  width: calc((100% - 3 * 8rem) / 4);
-}
-
-.row .col-2-of-4 {
-  width: calc(2 * ((100% - 3 * 8rem) / 4) + 8rem);
-}
-
-.row .col-3-of-4 {
-  width: calc(3 * ((100% - 3 * 8rem) / 4) + (8rem* 2));
-}
-
 .header {
   min-height: 90vh;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(10, 57, 47, 0.88)), to(#0a392f)), url(../img/background-header.jpg);
-  background-image: linear-gradient(180deg, rgba(10, 57, 47, 0.88) 0%, #0a392f 100%), url(../img/background-header.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(10, 57, 47, 0.88)), to(#0a392f)), url(https://raw.githubusercontent.com/sm1234sm/fcc-tribute-page/master/img/background-header.webp);
+  background-image: linear-gradient(180deg, rgba(10, 57, 47, 0.88) 0%, #0a392f 100%), url(https://raw.githubusercontent.com/sm1234sm/fcc-tribute-page/master/img/background-header.webp);
   background-size: cover;
   background-position: top;
   background-attachment: fixed;
@@ -780,8 +754,8 @@ body {
 }
 
 .section-timeline {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url(../img/tolkien-hobbit-letter.jpg);
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(../img/tolkien-hobbit-letter.jpg);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url(https://raw.githubusercontent.com/sm1234sm/fcc-tribute-page/master/img/tolkien-hobbit-letter.webp);
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(https://raw.githubusercontent.com/sm1234sm/fcc-tribute-page/master/img/tolkien-hobbit-letter.webp);
   -webkit-backdrop-filter: 8px;
           backdrop-filter: 8px;
   background-size: cover;
