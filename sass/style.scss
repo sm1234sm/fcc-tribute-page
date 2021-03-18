@@ -1,0 +1,823 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin&family=Cinzel&display=swap");
+
+// ABSTRACT
+
+/// MIXINS
+
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin gradient-text {
+    display: inline-block;
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+@mixin absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 37.5em) {
+            @content;
+        }
+    }
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width: 56.25em) {
+            @content;
+        }
+    }
+    @if $breakpoint == tab-land {
+        @media only screen and (max-width: 75em) {
+            @content;
+        }
+    }
+    @if $breakpoint == big-desktop {
+        @media only screen and (min-width: 112.5em) {
+            @content;
+        }
+    }
+}
+
+@mixin horizontalLine($position, $mode, $vertical) {
+    content: "";
+
+    display: inline-block;
+    border-top: 0.3rem solid;
+    border-image-slice: 1;
+    border-width: 1px;
+    width: 25%;
+    margin: 0 0.5rem;
+    transform: translateY($vertical);
+    @if ($mode == light) {
+        border-image-source: linear-gradient(to $position, transparent, $color-grey-dark-1, $color-grey-light-2);
+    }
+    @if ($mode == dark) {
+        border-image-source: linear-gradient(to $position, transparent, $color-grey-dark-1, $color-grey-dark-3);
+    }
+}
+
+/// VARIABLES
+
+//// COLOR
+
+$color-grey-dark-1: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
+$color-white: #fff;
+$color-black: #000;
+
+$color-green-dark-1: #0a392f;
+$color-gold: #b6991e;
+
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #eee;
+
+//// FONT
+$default-font-size: 1.6rem;
+
+//// GRID
+$grid-width: 100rem;
+$gutter-vertical: 8rem;
+$gutter-vertical-small: 2rem;
+$gutter-horizontal: 8rem;
+
+// BASE
+
+/// BASE
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+
+    @include respond(tab-land) {
+        font-size: 56.25%;
+    }
+
+    @include respond(tab-port) {
+        font-size: 50%;
+    }
+
+    @include respond(big-desktop) {
+        font-size: 75%;
+    }
+}
+
+body {
+    box-sizing: border-box;
+}
+
+::selection {
+    background-color: $color-gold;
+    color: $color-white;
+}
+
+/// TYPHOGRAPHY
+
+body {
+    font-family: "Cabin", serif;
+    font-weight: 400;
+    font-size: $default-font-size;
+    line-height: 1.7;
+    color: $color-grey-dark-3;
+}
+
+.header {
+    &__heading-primary {
+        font-family: "Cinzel", serif;
+
+        &--main {
+            display: block;
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 1.2rem;
+            color: $color-gold;
+
+            @include respond(tab-land) {
+                font-size: 4rem;
+            }
+
+            @include respond(tab-port) {
+                font-size: 2.6rem;
+            }
+        }
+        &--sub {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 400;
+
+            @include respond(tab-port) {
+                font-size: 1.8rem;
+            }
+        }
+    }
+}
+
+.heading-secondary {
+    text-align: center;
+    font-family: "Cinzel", serif;
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 1.1rem;
+    color: $color-grey-dark-3;
+
+    &__white {
+        color: $color-white;
+    }
+
+    @include respond(tab-port) {
+        font-size: 2rem;
+    }
+}
+
+.heading-tertiary {
+    width: 100%;
+    color: $color-gold;
+    font-family: "Cinzel", serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+
+    @include respond(tab-port) {
+        margin-bottom: 0;
+    }
+}
+
+.tribute-external-info {
+    //@include absCenter();
+    font-family: "Cinzel", serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $color-gold;
+    margin: 0 auto;
+    width: max-content;
+
+    &__link:link,
+    &__link:visited {
+        text-decoration: none;
+        color: $color-white;
+    }
+
+    &__link:hover {
+        text-decoration: underline;
+    }
+}
+
+/// UTILITIES
+
+.u-center-text {
+    text-align: center;
+}
+
+.u-margin-bottom-small {
+    margin-bottom: 1.5rem !important;
+}
+
+.u-margin-bottom-medium {
+    margin-bottom: 4rem !important;
+}
+
+.u-margin-bottom-big {
+    margin-bottom: 8rem !important;
+}
+
+.u-margin-top-medium {
+    margin-top: 4rem !important;
+}
+
+.u-margin-top-big {
+    margin-top: 8rem !important;
+}
+
+.u-margin-top-huge {
+    margin-top: 10rem !important;
+}
+
+.u-padding-bottom-big {
+    padding-bottom: 8rem !important;
+}
+
+.u-padding-top-medium {
+    padding-top: 4rem !important;
+}
+
+.u-padding-top-big {
+    padding-top: 8rem !important;
+}
+
+.u-padding-top-huge {
+    padding-top: 10rem !important;
+}
+
+// COMPONENTS
+
+/// CARD
+
+.card {
+    margin: 0 auto;
+    display: table;
+
+    &__content {
+        display: table-row;
+
+        :is(&--left, &--right) {
+            width: 50%;
+            display: table-cell;
+            vertical-align: middle;
+            position: relative;
+
+            @include respond(tab-port) {
+                display: block;
+                float: left;
+                width: 100%;
+                margin-top: 2rem;
+            }
+        }
+
+        &--right {
+            padding-left: 2rem;
+        }
+    }
+
+    &__header {
+        display: table-row;
+        vertical-align: middle;
+
+        @include respond(tab-port) {
+            display: block;
+            float: left;
+            width: 100%;
+        }
+
+        & > * {
+            width: 200%;
+            text-align: center;
+
+            @include respond(tab-port) {
+                width: 100%;
+            }
+        }
+    }
+
+    &__photo {
+        margin: 0 auto;
+        width: 22rem;
+        display: block;
+    }
+
+    &__description--published-date {
+        text-transform: uppercase;
+
+        @include respond(tab-port) {
+            text-align: center;
+        }
+    }
+
+    &__description--summary {
+        text-align: justify;
+
+        @include respond(tab-port) {
+            padding-bottom: 4rem;
+        }
+
+        &::after {
+            @include respond(tab-port) {
+                content: "";
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                display: inline-block;
+                border-top: 0.3rem solid;
+                border-image-slice: 1;
+                border-width: 1px;
+                margin-top: 2rem;
+                width: 100%;
+                border-image-source: linear-gradient(
+                    to right,
+                    transparent,
+                    $color-grey-dark-1,
+                    $color-grey-dark-3,
+                    $color-grey-dark-1,
+                    transparent
+                );
+            }
+        }
+    }
+}
+
+/// HORIZONTAL RULE
+
+.horizontal-rule {
+    text-align: center;
+
+    & img {
+        width: 2.5rem;
+
+        @include respond(tab-port) {
+            width: 1.5rem;
+        }
+    }
+
+    &__light {
+        & img {
+            filter: invert(1);
+        }
+
+        &::before {
+            @include horizontalLine(right, light, -1.8rem);
+        }
+
+        &::after {
+            @include horizontalLine(left, light, -1.8rem);
+        }
+
+        @include respond(tab-port) {
+            &::before {
+                @include horizontalLine(right, light, -1rem);
+            }
+
+            &::after {
+                @include horizontalLine(left, light, -1rem);
+            }
+        }
+    }
+
+    &__dark {
+        &::before {
+            @include horizontalLine(right, dark, -1.8rem);
+        }
+
+        &::after {
+            @include horizontalLine(left, dark, -1.8rem);
+        }
+
+        @include respond(tab-port) {
+            &::before {
+                @include horizontalLine(right, dark, -1rem);
+            }
+
+            &::after {
+                @include horizontalLine(left, dark, -1rem);
+            }
+        }
+    }
+}
+
+/// TIMELINE
+
+.timeline {
+    position: relative;
+    margin: 0 auto;
+    padding: 8rem 0;
+
+    @include respond(tab-port) {
+        &::before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 4rem 4rem 0 4rem;
+            border-color: $color-green-dark-1 transparent transparent transparent;
+            top: 0;
+            left: 3.5rem;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        &__line-starter {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 4rem 4rem 4rem;
+            border-color: transparent transparent $color-green-dark-1 transparent;
+            bottom: 0;
+            transform: translateX(-6%);
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 0.6rem;
+        background-color: $color-green-dark-1;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -0.3rem;
+
+        @include respond(tab-port) {
+            left: 3.5rem;
+        }
+    }
+
+    &__container {
+        padding: 1rem 4rem;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+
+        @include respond(tab-port) {
+            width: 100%;
+            padding-left: 7rem;
+            padding-right: 2.5rem;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            display: inline-block;
+            width: 2.5rem;
+            height: 2.5rem;
+            right: -1.3rem;
+            background-image: url(../img/one-ring.png);
+            background-size: 2.5rem;
+            top: 1.8rem;
+            border-radius: 50%;
+            z-index: 1;
+
+            @include respond(tab-port) {
+                left: 3.1rem;
+            }
+        }
+
+        &:nth-child(odd) {
+            left: 0;
+
+            & > * {
+                direction: rtl;
+            }
+
+            @include respond(tab-port) {
+                & > * {
+                    direction: unset;
+                }
+            }
+
+            &::before {
+                content: "";
+                height: 0;
+                position: absolute;
+                top: 2.2rem;
+                width: 0;
+                z-index: 1;
+                right: 3rem;
+                border: medium solid $color-green-dark-1;
+                border-width: 1rem 0 1rem 1rem;
+                border-color: transparent transparent transparent $color-green-dark-1;
+
+                @include respond(tab-port) {
+                    left: 6rem;
+                    border-width: 1rem 1rem 1rem 0;
+                    border-color: transparent $color-green-dark-1 transparent transparent;
+                }
+            }
+
+            &::after {
+                @include respond(tab-port) {
+                    left: 2.2rem;
+                }
+            }
+        }
+
+        &:nth-child(even) {
+            left: 50%;
+
+            @include respond(tab-port) {
+                left: 0%;
+            }
+
+            &::before {
+                content: " ";
+                height: 0;
+                position: absolute;
+                top: 2.2rem;
+                width: 0;
+                z-index: 1;
+                left: 3rem;
+                border: medium solid $color-green-dark-1;
+                border-width: 1rem 1rem 1rem 0;
+                border-color: transparent $color-green-dark-1 transparent transparent;
+
+                @include respond(tab-port) {
+                    left: 6rem;
+                    border-width: 1rem 1rem 1rem 0;
+                    border-color: transparent $color-green-dark-1 transparent transparent;
+                }
+            }
+            &::after {
+                left: -1.3rem;
+
+                @include respond(tab-port) {
+                    left: 2.2rem;
+                }
+            }
+        }
+    }
+
+    &__content {
+        position: relative;
+        display: table;
+        border-radius: 0.6rem;
+        overflow: hidden;
+        min-height: 10rem;
+        width: 100%;
+    }
+
+    &__content-header {
+        display: table-cell;
+        padding: 1rem 2rem;
+        background-color: $color-green-dark-1;
+        font-size: 2rem;
+        text-align: center;
+        color: $color-white;
+        width: 20%;
+    }
+
+    &__content-description {
+        display: table-cell;
+        padding: 1rem 2rem;
+        background-color: $color-white;
+        width: 80%;
+        height: 100%;
+        direction: ltr;
+
+        & > * {
+            display: block;
+            width: 100%;
+        }
+
+        & > p:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+
+    @include respond(tab-port) {
+        :is(&__content-header, &__content-description) {
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+// LAYOUT
+
+/// GRID
+
+.row {
+    max-width: $grid-width;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+        margin-bottom: $gutter-vertical;
+
+        @include respond(tab-port) {
+            margin-bottom: $gutter-vertical-small;
+        }
+    }
+
+    @include respond(tab-port) {
+        max-width: 50rem;
+        padding: 0 3rem;
+    }
+
+    @include clearfix;
+
+    [class^="col-"] {
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+
+            @include respond(tab-port) {
+                margin-right: 0;
+                margin-bottom: $gutter-vertical-small;
+            }
+        }
+
+        @include respond(tab-port) {
+            width: 100% !important;
+        }
+    }
+
+    .col-1-of-2 {
+        width: calc((100% - #{$gutter-horizontal}) / 2);
+    }
+
+    .col-1-of-3 {
+        width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    }
+
+    .col-2-of-3 {
+        width: calc(2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+    }
+
+    .col-1-of-4 {
+        width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+    }
+
+    .col-2-of-4 {
+        width: calc(2 * ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+    }
+
+    .col-3-of-4 {
+        width: calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + (#{$gutter-horizontal}* 2));
+    }
+}
+
+/// HEADER
+
+.header {
+    min-height: 90vh;
+    height: max-content;
+    background-image: linear-gradient(180deg, rgba($color-green-dark-1, 0.88) 0%, $color-green-dark-1 100%),
+        url(../img/background-header.jpg);
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    &__text-box {
+        margin: auto;
+        padding: 2rem 0;
+        text-align: center;
+        color: $color-white;
+        height: max-content;
+    }
+
+    &__portrait {
+        width: 15rem;
+        margin: 0 auto 2rem auto;
+        clip-path: circle(50% at 50% 50%);
+
+        @include respond(tab-port) {
+            width: 10rem;
+        }
+    }
+
+    &__portrait-photo {
+        max-width: 15rem;
+        max-height: 15rem;
+        display: block;
+
+        @include respond(tab-port) {
+            max-width: 10rem;
+            max-height: 10rem;
+        }
+    }
+
+    &__description {
+        text-align: justify;
+        width: 60ch;
+        margin: auto;
+
+        @include respond(tab-land) {
+            width: 40ch;
+        }
+
+        @include respond(tab-port) {
+            width: 30ch;
+        }
+    }
+}
+
+#img-caption {
+    display: none;
+}
+
+// PAGES
+
+.section-main-works {
+    padding-bottom: 10rem;
+    &__divider {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSI0NXB4IiB2aWV3Qm94PSIwIDAgMTI4MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iIzBBMzkyRiI+PHBhdGggZD0iTTAgMTI3Ljg5OWw2MC42MTMgNC44NzggOTUuNjQ1LTYuMjExIDg2LjM2My0xNi4wNzQgNzguNjg0IDkuODgzIDkwLjEzNi0yMS41OTQgOTQuNDU0IDcuNTc0IDc3LjkyNS0xNy42NiA5MS42NjQgMjAuNzk4IDc2Ljk2MS0xMi42NDkgNjMuNjY0LTIxLjQyMiA5Ny42MDIgNy4wNyA4My42NzItMjkuNjE3IDY2LjI4NSAxMS42NzggNzAuNzkzLTIzLjMzNCA3NC44NjMtNC42NDFMMTI4MCAwdjE0MEgweiIgZmlsbC1vcGFjaXR5PSIuNSIvPjxwYXRoIGQ9Ik0wIDEyNi43MWw2MC42MTMgNy40MTVMMTU2LjI1NyAxMzFsODYuMzY0LTEzLjg3OSA3OC42ODMgOS43MzEgOTAuMTM3LTE3LjA1OSA5NC40NTMgNy42NjYgNzYuOTI2LTExLjgzMyA4Mi42NjQgMTMuOTM1IDc2Ljk2MS04LjQ3NSA3My42NjQtMjIuMTI2IDk3LjYwMSA3LjMyOCA4My42NzItMjIuOTUyIDY2LjI4NSAxMC45MzMgNzAuNzk0LTE4LjIyNGg3OS44NjJMMTI4MCAzNS44MzhWMTQwSDB6Ii8+PC9nPjwvc3ZnPg==);
+        background-size: 100% 45px;
+        top: 0;
+        height: 45px;
+        z-index: 1;
+        transform: rotateY(180deg) rotateX(180deg);
+    }
+}
+
+.section-timeline {
+    background-image: linear-gradient(180deg, rgba($color-black, 0.5) 0%, rgba($color-black, 0.5) 100%),
+        url(../img/tolkien-hobbit-letter.jpg);
+    backdrop-filter: 8px;
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    &__header {
+        display: block;
+        padding: 4rem 0;
+        background-color: $color-green-dark-1;
+        position: relative;
+        z-index: 1;
+
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 8rem 8rem 0 8rem;
+            border-color: $color-green-dark-1 transparent transparent transparent;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+
+            @include respond(tab-port) {
+                display: none;
+            }
+        }
+    }
+}
+
+.section-footer {
+    display: block;
+    padding: 4rem 0;
+    background-color: $color-green-dark-1;
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 8rem 8rem 8rem;
+        border-color: transparent transparent $color-green-dark-1 transparent;
+        left: 50%;
+        transform: translateX(-50%) translateY(-100%);
+
+        @include respond(tab-port) {
+            display: none;
+        }
+    }
+}
